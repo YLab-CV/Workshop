@@ -17,7 +17,7 @@ date modified: 2021-10-15, Friday, 15:42:40
 	- 日期、姓名、文件名之间以 `-` 连接
 	- 其他以 `_` 连接
 	- 不要有空格
-	- 例如：2021_10_15-JieWei-Domain_Adaptation
+	- 例如：`2021_10_15-JieWei-Domain_Adaptation`
 4. 文件位置：
 
 	- Slide 位置：`Assets/Slides/`
