@@ -110,7 +110,7 @@ ICCV2021汇总：https://github.com/DWCTOD/ICCV2021-Papers-with-Code-Demo
 
 方法：
 
-不支持在 Docs 外粘贴 block
+![img](imgs/2021_10_14-ZhangShuo_Cao-Images/1.png)
 
 ![img](https://z0ad5y8wj2.feishu.cn/space/api/box/stream/download/asynccode/?code=MjUxMjljMmQ3YTJmMTgxNzE2NjAzZDUxNzYwNGM5MTBfeFU0blQ1R25lRDhJSzdwR3JaQ1JLN3V6Zml2U3N2MGRfVG9rZW46Ym94Y251MGg0VUVjckZTUHBOV0pQUURFbGtjXzE2MzQ4OTUzNTc6MTYzNDg5ODk1N19WNA)
 
