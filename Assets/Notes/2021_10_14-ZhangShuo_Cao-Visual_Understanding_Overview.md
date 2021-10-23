@@ -110,14 +110,11 @@ ICCV2021汇总：https://github.com/DWCTOD/ICCV2021-Papers-with-Code-Demo
 
 方法：
 
-不支持在 Docs 外粘贴 block
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/1.png" alt="img" style="zoom:67%;" />
 
-![img](https://z0ad5y8wj2.feishu.cn/space/api/box/stream/download/asynccode/?code=MjUxMjljMmQ3YTJmMTgxNzE2NjAzZDUxNzYwNGM5MTBfeFU0blQ1R25lRDhJSzdwR3JaQ1JLN3V6Zml2U3N2MGRfVG9rZW46Ym94Y251MGg0VUVjckZTUHBOV0pQUURFbGtjXzE2MzQ4OTUzNTc6MTYzNDg5ODk1N19WNA)
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/2.png" alt="img" style="zoom:67%;" />
 
-![img](https://z0ad5y8wj2.feishu.cn/space/api/box/stream/download/asynccode/?code=NTdjM2I0MTc4OTJhMTNkMzllYTQ1NGEzYTUyMGE1MGZfSkRtcUhpY3dpdkRVRDcxTDVlSU14M2J5RWdkNm93ZFBfVG9rZW46Ym94Y25hekoxbFViVHRzT056cU5JUTdURVNjXzE2MzQ4OTUzNTc6MTYzNDg5ODk1N19WNA)
-
-
-
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/3.png" alt="img" style="zoom:67%;" />
 
 
 - **行人重识别/行人搜索：**
@@ -238,7 +235,7 @@ Anchor-Free Person Search https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A
 
    方法：
 
-不支持在 Docs 外粘贴 block
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/4.png" alt="img" style="zoom:67%;" />
 
 **深度学习的基于图像融合的建模方法（视频）**
 
@@ -257,7 +254,7 @@ Anchor-Free Person Search https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A
 
 视频数据集：（全受限，半受限，非受限）
 
-![img](https://z0ad5y8wj2.feishu.cn/space/api/box/stream/download/asynccode/?code=NzdkZTIxZmNiNmYwYjBmOWUwMTc1MzNlN2YyMTE3NzZfQm9sY1pvSlFnWEVXODlBUlRLWGxnUHlZejNzY3R3WkRfVG9rZW46Ym94Y25rMWx2SmVEYlFkbHlrcTZtcnBIYXhoXzE2MzQ4OTUzNTc6MTYzNDg5ODk1N19WNA)
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/5.png" alt="img" style="zoom:67%;" />
 
 **CVPR2021 ICCV2021人脸论文汇总**
 
@@ -441,12 +438,11 @@ Anchor-Free Person Search https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A
 
 方法：
 
-不支持在 Docs 外粘贴 block
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/6.png" alt="img" style="zoom:67%;" />
 
 基于深度学习的方法
 
-![img](https://z0ad5y8wj2.feishu.cn/space/api/box/stream/download/asynccode/?code=YjVmM2RmM2VhMTFmMGE5NmQ2ZDIyZDI1NGExMDMwOGFfaU1ZYW4wb0RNMkZCeWZFYThPUGlUZ1ROMXlaTFRYM1JfVG9rZW46Ym94Y25oUXZySGZjVmdNRDJCd0Nib3NwNXBlXzE2MzQ4OTUzNTc6MTYzNDg5ODk1N19WNA)
-
+<img src="imgs/2021_10_14-ZhangShuo_Cao-Images/7.png" alt="img" style="zoom:67%;" />
 
 
 - **人物交互检测（HOI）（知乎上论文解读较多）**
