@@ -2,7 +2,7 @@
 latest modified author: Guanyu Hu
 date created: 2021-10-22, Friday, 20:02:11
 
-date modified: 2021-10-23, Saturday, 14:01:35
+date modified: 2021-10-23, Saturday, 14:04:48
 ---
 
 # Visual Understanding Overview
@@ -346,7 +346,7 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 - **任务**：对视频中的目标进行定位和识别
 - **问题**：优化主流目标检测算法的性能；模型轻量化；保持视频序列的时空一致性（运动模糊；未    聚焦上；遮挡；外观变化）
 - **备注**：很多算法利用时间维度的信息提升性能；通过借鉴其他领域 eg.NLP 应用于视频目标检测也获得了不错的效果；    如何提升泛化性能；如何在少样本的情况下结合其他方法 eg.迁移学习，弱监督 进行目标检测
-- **应用领域： **视频监控、自动驾驶、无人机导航
+- **应用领域**：视频监控、自动驾驶、无人机导航
 - **方法**：
 
 ![](imgs/2021_10_14-ZhangShuo_Cao-Images/6.png)
@@ -502,9 +502,14 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 | Modular Interactive Video Object Segmentation: Interaction-to-Mask, Propagation and Difference-Aware Fusion |         |
 | Learning to Recommend Frame for Interactive Video Object Segmentation in the Wild                           |         |
 
-### 3.6. 两种热门的方法
 
-#### 3.6.1. Transformer
+### 3.7. 点云
+
+<https://zhuanlan.zhihu.com/p/344635951> 关于点云的综述
+
+## 3.6. 两种热门的方法
+
+### 3.6.1. Transformer
 
 > 数据量和算力要求很大
 
@@ -533,12 +538,8 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 | AutoFormer: Searching Transformers for Visual Recognition                 | 自动寻找合适的 Transformer                                                                                                                                                                                                                                            |
 |                                                                           |                                                                                                                                                                                                                                                                |
 
-#### 3.6.2. 域适应
+### 3.6.2. 域适应
 
 > 域适应是计算机视觉的一个领域，我们的目标是在**源数据集**上训练一个神经网络，并确保在显著不同于源数据集的**目标数据集**上也有良好的准确性。
 
 > 迁移学习
-
-### 3.7. 点云
-
-<https://zhuanlan.zhihu.com/p/344635951> 关于点云的综述
