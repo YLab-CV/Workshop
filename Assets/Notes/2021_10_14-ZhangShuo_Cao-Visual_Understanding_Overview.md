@@ -98,9 +98,9 @@ date modified: 2021-10-23, Saturday, 14:04:48
 - **备注**：挑战较大，人体行为识别目前处在动作识别阶段
 - **应用领域**： 机器人行为研究、智能人机交互、智能视 频监控、仿真虚拟现实、智能安防、运动员辅助训练
 - **方法**：
-	![](imgs/2021_10_14-ZhangShuo_Cao-Images/1.png)
-	![](imgs/2021_10_14-ZhangShuo_Cao-Images/2.png)
-	![](imgs/2021_10_14-ZhangShuo_Cao-Images/3.png)
+	![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/1.png)
+	![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/2.png)
+	![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/3.png)
 
 #### 3.1.3. 行人重识别/行人搜索：
 
@@ -195,7 +195,7 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 
 - **方法**：
 
-![](imgs/2021_10_14-ZhangShuo_Cao-Images/4.png)
+![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/4.png)
 
 **深度学习的基于图像融合的建模方法（视频）**
 
@@ -215,7 +215,7 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 
 **视频数据集**：（全受限，半受限，非受限）
 
-![](imgs/2021_10_14-ZhangShuo_Cao-Images/5.png)
+![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/5.png)
 
 **CVPR2021 ICCV2021 人脸论文汇总**
 
@@ -349,10 +349,10 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 - **应用领域**：视频监控、自动驾驶、无人机导航
 - **方法**：
 
-![](imgs/2021_10_14-ZhangShuo_Cao-Images/6.png)
+![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/6.png)
 
 **基于深度学习的方法**
-![](imgs/2021_10_14-ZhangShuo_Cao-Images/7.png)
+![](imgs/2021_10_14-ZhangShuo_Cao-Visual_Understanding_Overview/7.png)
 
 #### 3.4.2. **人物交互检测（HOI）（知乎上论文解读较多）**
 
@@ -503,13 +503,13 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 | Learning to Recommend Frame for Interactive Video Object Segmentation in the Wild                           |         |
 
 
-### 3.7. 点云
+### 3.6. 点云
 
 <https://zhuanlan.zhihu.com/p/344635951> 关于点云的综述
 
-## 3.6. 两种热门的方法
+## 4. 两种热门的方法
 
-### 3.6.1. Transformer
+### 4.1. Transformer
 
 > 数据量和算力要求很大
 
@@ -538,7 +538,7 @@ Anchor-Free Person Search <https://mp.weixin.qq.com/s/iqJkgp0JBanmeBPyHUkb-A>
 | AutoFormer: Searching Transformers for Visual Recognition                 | 自动寻找合适的 Transformer                                                                                                                                                                                                                                            |
 |                                                                           |                                                                                                                                                                                                                                                                |
 
-### 3.6.2. 域适应
+### 4.2. 域适应
 
 > 域适应是计算机视觉的一个领域，我们的目标是在**源数据集**上训练一个神经网络，并确保在显著不同于源数据集的**目标数据集**上也有良好的准确性。
 

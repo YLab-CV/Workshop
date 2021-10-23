@@ -1,6 +1,15 @@
+---
+latest modified author: Guanyu Hu
+date created: 2021-10-22, Friday, 16:05:50
+
+date modified: 2021-10-23, Saturday, 14:09:46
+---
+
 # AC-CV组 第一次组内分享
 
-> 汇报人：魏 洁      2021-10-14
+> 汇报人：魏 洁
+>
+> 日期：2021-10-14
 
 ## 1. 迁移学习
 
@@ -12,7 +21,7 @@
 
 - 人在学习新知识时，往往是建立在大量基础知识之上的
 
-  （认识一个猫，是从猫 = 耳朵 + 眼睛 + 爪子 + 毛茸茸 + ... ，而不是从什么是耳朵开始学起）
+	（认识一个猫，是从猫 = 耳朵 + 眼睛 + 爪子 + 毛茸茸 + ... ，而不是从什么是耳朵开始学起）
 
 ### 1.2 什么是迁移学习？
 
@@ -29,24 +38,21 @@ Transfer learning (TL): focuses on storing knowledge gained while solving one pr
 
 ### 1.3 相关概念
 
-任务 Task: 你当下想解决的问题，或者说你想让模型实现的功能
+- **任务 Task**: 你当下想解决的问题，或者说你想让模型实现的功能
+	- 比如：图片分类 和 情感分析 就是两个不同的任务
 
-​		比如：图片分类 和 情感分析 就是两个不同的任务
+- **域 Domain **: 可以理解为某个时刻的某个特定领域，也可以狭义的理解为某个具体的数据集
+	- 比如：图书评论 和 电影评论；中文语料库 和 英文语料库； 正常人脸 和 遮挡人脸
 
-域 Domain : 可以理解为某个时刻的某个特定领域，也可以狭义的理解为某个具体的数据集
-
-​		比如：图书评论 和 电影评论；中文语料库 和 英文语料库； 正常人脸 和 遮挡人脸
-
-针对某一特定任务：
-
-  - 源域（Source Domain）：可以是任何你可以获取到的数据集
-  - 目标域（Target Domain）: 特定的，你要解决问题的数据集
+- 针对某一特定任务：
+	- 源域（Source Domain）：可以是任何你可以获取到的数据集
+	- 目标域（Target Domain）: 特定的，你要解决问题的数据集
 
 ### 1.4 迁移学习分类
 
 按照源域数据和目标域数据是否有标注划分：
 
-<img src="imgs/image-20211013215632667.png" alt="image-20211013215632667" style="zoom: 33%;" >
+![](imgs/2021_10_14-JieWei-Domain_Adaptation/image-20211013215632667.png)
 
 **1. 源域和目标域数据都有标注**，这是最常见的一种
 
@@ -57,8 +63,8 @@ Transfer learning (TL): focuses on storing knowledge gained while solving one pr
 **2. 源域数据有标注，目标域数据没有标注**
 
 - Zero-shot learning：源域中从没有出现的类别，出现在目标域中（如训练数据只有猫狗，但测试数据出现老虎）。主流的两种处理方式：
-  - 不直接进行分类，使用属性特征来表示每个 class，然后查表（字典）确定 class
-  - 图片和属性特征同时进行 embedding，投影到一个空间， 然后判断哪两个 embedding vector 更接近
+	- 不直接进行分类，使用属性特征来表示每个 class，然后查表（字典）确定 class
+	- 图片和属性特征同时进行 embedding，投影到一个空间， 然后判断哪两个 embedding vector 更接近
 - Domain Adaptation
 
 **3. 源域数据没有标注，目标域数据有标注**
@@ -133,26 +139,26 @@ Transfer learning (TL): focuses on storing knowledge gained while solving one pr
 
 **Paper:**
 
- [1] Y Ganin, Lempitsky V. Unsupervised Domain Adaptation by  Backpropagation[C]. ICML, 2015.
+[1] Y Ganin, Lempitsky V. Unsupervised Domain Adaptation by Backpropagation[C]. ICML, 2015.
 
- [2] Gao Y , Liu J X , Wang L , et al. Domain-Adversarial Autoencoder with  Attention Based Feature Level Fusion for Speech Emotion Recognition[C].  ICASSP, 2021.
+[2] Gao Y , Liu J X , Wang L , et al. Domain-Adversarial Autoencoder with Attention Based Feature Level Fusion for Speech Emotion Recognition[C].  ICASSP, 2021.
 
 **Video:**
 
- https://www.bilibili.com/video/BV1JE411g7XF?p=83
+<https://www.bilibili.com/video/BV1JE411g7XF?p=83>
 
- https://www.bilibili.com/video/BV1Wv411h7kN?p=71
+<https://www.bilibili.com/video/BV1Wv411h7kN?p=71>
 
- https://www.bilibili.com/video/BV1T7411R75a?spm_id_from=333.999.0.0
+<https://www.bilibili.com/video/BV1T7411R75a?spm_id_from=333.999.0.0>
 
 **Blog:**
 
- http://blog.itpub.net/69942346/viewspace-2654034/
+<http://blog.itpub.net/69942346/viewspace-2654034/>
 
- https://blog.csdn.net/dakenz/article/details/85954548
+<https://blog.csdn.net/dakenz/article/details/85954548>
 
 **Github**:
 
-  https://github.com/jindongwang/transferlearning
+<https://github.com/jindongwang/transferlearning>
 
- https://github.com/jvanvugt/pytorch-domain-adaptation
+<https://github.com/jvanvugt/pytorch-domain-adaptation>
