@@ -43,7 +43,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 
 ##### 1.1.2.2. For Generation
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101174251.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101174251.png)
 
 - **Purpose**:
 	- Try to learn how to make a realistic representation of some class
@@ -56,7 +56,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 
 #### 1.1.3. Discriminative Models VS. Generative Models
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028015315.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028015315.png)
 
 - **例子[^3]**： 确定一个羊是山羊还是绵羊
 	- 判别式模型举例：是从历史数据中学习到模型，然后通过提取这只羊的特征来预测出这只羊是山羊的概率，是绵羊的概率。
@@ -66,7 +66,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 
 #### 1.2.1. Variational Autoencoders - VAE(变分自编码器)
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101180324.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101180324.png)
 
 - **What:**
 	- variational 英: [/veərɪ'eɪʃnəl/](https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/4d/9b/4D9B6753A36E9636DA3B6265AB7E322E.mp3) adj. 变化；〔数〕变分；变量的；变异的
@@ -75,14 +75,14 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 	1. They learn first by feeding in realistic images into the encoder, then the encoder's job is to find a good way of representing that image in the Latent Space
 	2. Take the latent representation and put it through the decoder, it reconstruct the realistic image that the encoder saw before
 	3. 在训练完成后 去掉 encoder, 我们可以从隐空间中随机选择一个点，decoder 就可以生成逼真的图片
-		![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101180848.png)
+		![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101180848.png)
 - **Variational**：
 	- 给整个模型注入一些噪音, encoder 没有将图片在隐空间中编码为一个点, 实际上是**将图像编码到整个分布上**，然后对该分布上的一个点进行采样，以输入 decoder 从而生成一个真实的图像。
-		![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211031011334.png)
+		![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211031011334.png)
 
 #### 1.2.2. Generative Adversarial Networks - GAN(生成对抗网络)
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028155440.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028155440.png)
 
 - **What:**
 	- adversarial [/ˌædvɜrˈseriəl/](https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/25/c5/25C5E97B7C56BDE31279F4D8189E95A1.mp3) adj. 对立的；敌对的
@@ -103,11 +103,11 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 
 - **Discriminator 对自己的影响**:
 	- improve itself
-		![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101183958.png)
+		![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101183958.png)
 
 - **Discriminiator 对 Generator 的影响**:
 	- improve generator
-		![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101184607.png)
+		![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101184607.png)
 
 	- This $0.85$ will be given to the generator to improve its efforts
 
@@ -120,7 +120,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 
 #### 2.2.1. What the Generator Does
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211027173859.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211027173859.png)
 
 - The final goal is to generate a realistic representation of a certain class.
 - 这里神经网络的输出不是一个分类而是图片中的每个像素点
@@ -148,11 +148,11 @@ $$
 
 #### 2.4.1. Training Discriminator
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028163739.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028163739.png)
 
 #### 2.4.2. Training Generator
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028163810.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028163810.png)
 
 1. First, you have a noise vector $\xi$ [/saɪ/], pass into a generator to produce a set of features that compose an image.
 2. This image $\hat{X}$ is feed into the discriminator, which determines how real and how fake it is, and output a $\hat{Y_d}$
@@ -161,7 +161,7 @@ $$
 	- 而 discriminator 希望尽可能识别出这是生成的图片，即让$\hat{Y_d}=0$
 4. 当 generator 效果满足要求的时候就可以将模型保存，it can generate all sorts of different examples
 
-![](imgs/2021_10_28-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101191626.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101191626.png)
 
 - **Question:**
 	- Why need noise?
