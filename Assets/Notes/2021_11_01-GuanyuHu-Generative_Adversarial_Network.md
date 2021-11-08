@@ -1,14 +1,14 @@
 ---
 creator: Guanyu Hu
 date created: 2021-10-26, Tuesday, 19:15:40
-date modified: 2021-11-02, Tuesday, 11:45:27
 latest modified author: Guanyu Hu
+
+date modified: 2021-11-08, Monday, 11:42:41
 ---
 
 # Generative Adversarial Network
 
-> 主讲人：胡冠宇
-> 日期：2021-11-01
+> 主讲人：胡冠宇  日期：2021-11-01
 
 ## 1. Generative Model
 
@@ -31,7 +31,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 - generative [/ˈdʒen(ə)rətɪv/](https://dictionary.blob.core.chinacloudapi.cn/media/audio/tom/2f/d4/2FD4A110F56A6383BF3FC4A8C971BB8E.mp3) adj. 有生产力的；能生产的；生成性；生成的
 - **Purpose**: 主要用于分类和生成
 
-##### 1.1.2.1. For Classification
+##### 1.1.2.1. for Classification
 
 - **How**:
 	- 观察训练数据 $X$与$Y$的整体分布，求得联合概率分布 $P(X,Y)$，每新来一个数据 $X$，求出 $X$与不同分类$Y$之间的联合概率分布，将 $X$分为联合概率大的那一类。
@@ -41,7 +41,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 	- 朴素贝叶斯方法：我们通过数据集学习到先验概率分布$P(Y)$和条件概率分布$P(X|Y)$，即可得到联合概率分布$P(X,Y)$； $P(X,Y) = P(X|Y) \cdot P(Y)$
 	- 隐马尔可夫模型：我们通过数据集学习到初始概率分布、状态转移概率矩阵和观测概率矩阵，即得到了一个可以表示状态序列和观测序列的联合分布的马尔可夫模型。
 
-##### 1.1.2.2. For Generation
+##### 1.1.2.2. for Generation
 
 ![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211101174251.png)
 
@@ -54,7 +54,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 	- VAE: 近似得到 $P(X)$ 的概率密度函数
 	- GAN: 直接产生符合 $X$ 本质分布的样本
 
-#### 1.1.3. Discriminative Models VS. Generative Models
+#### 1.1.3. Discriminative Models Vs. Generative Models
 
 ![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028015315.png)
 
@@ -97,7 +97,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 	- There's no guiding encoder this time that determines what input noise vector should look like
 	- GAN 是通过判别器网络来进行优化的，让生成器产生数据的分布直接拟合训练数据的分布，而对具体的分布没有特别的要求。
 
-## 2. Generative Adversarial Networks - GAN
+## 2. Generative Adversarial Networks - Gan
 
 ### 2.1. Discriminator
 
@@ -126,7 +126,7 @@ discriminative [/dɪ'skrɪməˌneɪtɪv/](https://dictionary.blob.core.chinaclou
 - 这里神经网络的输出不是一个分类而是图片中的每个像素点
 - 为了使每次生成的图像都不同，每一次 run 需要输入 different sets of random values - noise vector.
 
-### 2.3. BCE Cost Function
+### 2.3. Bce Cost Function
 
 - BCE: Binary Cross Entropy function
 
@@ -144,7 +144,7 @@ $$
 	- Close to zero when the label and the prediction are similar
 	- Approaches infinity when the label and the prediction are defferent
 
-### 2.4. Training GANs
+### 2.4. Training Gans
 
 #### 2.4.1. Training Discriminator
 
@@ -152,7 +152,7 @@ $$
 
 #### 2.4.2. Training Generator
 
-![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/Pasted%20image%2020211028163810.png)
+![](imgs/2021_11_01-GuanyuHu-Generative_Adversarial_Network/traingenetator.svg)
 
 1. First, you have a noise vector $\xi$ [/saɪ/], pass into a generator to produce a set of features that compose an image.
 2. This image $\hat{X}$ is feed into the discriminator, which determines how real and how fake it is, and output a $\hat{Y_d}$
@@ -173,7 +173,7 @@ $$
 
 **原理**：生成器所做的是学习从一些潜在空间$\xi$(输入)到一些采样空间 $\hat{X}$ (输出)的映射，并理解学习是如何进行的。
 
-#### 2.4.3. Training GANs
+#### 2.4.3. Training Gans
 
 - Both models should improve together and should kept at similar skill levels from the beginning of training
 - 如果 discriminator 特别好，那么会将所有生成的都预测为 fake，这样 generator 就不知道如何改进
