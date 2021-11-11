@@ -17,7 +17,7 @@ CNN 针对输入序列是单独处理每一个输入单元的信息（token、fr
 
 ### 1.2 RNN 结构
 
-![](imgs/Pasted-image-20211111094952.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111094952.png)
 
 $x$ 是一个向量，它表示输入层的值； $s$ 是一个向量，它表示隐藏层的值； $o$ 是一个向量，它表示输出层的值；
 
@@ -43,7 +43,7 @@ LSTM & GRU 提出，解决上述存在的问题。
 
 根据输入和输出数据的类别，可以将任务划分为一下几大类：
 
-![](imgs/Pasted-image-20211111105531.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111105531.png)
 
 RNN 输出的序列长度与输入序列长度保持一致，不能任意变化；单纯使用 RNN 无法灵活处理上述问题。
 
@@ -51,7 +51,7 @@ RNN 输出的序列长度与输入序列长度保持一致，不能任意变化�
 
 seq2seq 可以看作由 Encoder 和 Decoder 两个部分组成，Encoder 将一个序列编码为一个固定长度的语义向量，Decoder 将该语义向量解码为另一个序列。
 
-![](imgs/Pasted-image-20211111110618.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111110618.png)
 
 Encoder 端：
 
@@ -81,7 +81,7 @@ Decoder 端：两种形式
 
 ### 3.2 原理
 
-![](imgs/Pasted-image-20211111144603.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111144603.png)
 
 涉及三个主要概念：Key、Value、Query。 可以理解为：图书馆（source）有很多书（value），每本书都有自己的编号（key），当我们想了解关于 AI 编程（query）方面的内容时，并不是所有书都仔细看，我们就主要关注其中相关的书籍（value2 和 value5)。
 
@@ -107,20 +107,20 @@ $$
 
 ### 3.3 种类
 
-![](imgs/Pasted-image-20211111154354.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111154354.png)
 
 ### 3.4 Seq2Seq 中常用的两种 Attention
 
-| Name     | Structure                                 | Formula                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| -------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Bahdanau | ![](imgs/Pasted-image-20211111155826.png) | 1) Context vector <br>$\begin{aligned} &c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i} \\ &\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)} \\ &e_{t i}=v_{a}^{\top} \tanh \left(W_{a}\left[s_{i-1}, h_{i}\right]\right) \end{aligned}$<br/><br/>2) Hidden layer parameters  <br/><br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}, c_{t}\right]\right)$<br/>$o_{t}=\operatorname{softmax}\left(V s_{t}\right)$                                   |
+| Name     | Structure                                 | Formula                                                      |
+| -------- | ----------------------------------------- | ------------------------------------------------------------ |
+| Bahdanau | ![](imgs/Pasted-image-20211111155826.png) | 1) Context vector <br>$\begin{aligned} &c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i} \\ &\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)} \\ &e_{t i}=v_{a}^{\top} \tanh \left(W_{a}\left[s_{i-1}, h_{i}\right]\right) \end{aligned}$<br/><br/>2) Hidden layer parameters  <br/><br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}, c_{t}\right]\right)$<br/>$o_{t}=\operatorname{softmax}\left(V s_{t}\right)$ |
 | Luong    | ![](imgs/Pasted-image-20211111161238.png) | 1) Hidden layer parameters <br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}\right]\right)$<br> <br/>2) Context vector  <br/>$c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i}$<br/>$\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)}$<br>$e_{t i}=s_{t}^{\top} W_{a} h_{i}$<br><br/>3) Hidden layer parameters<br> $\tilde{s}_{t}=\tanh \left(W_{c}\left[s_{t}, c_{t}\right]\right)$<br> $o_{t}=\operatorname{softmax}\left(V \tilde{s}_{t}\right)$ |
 
 ## 4. Transformer
 
 ### 4.1 整体结构
 
-![](imgs/Pasted-image-20211111161636.png)
+![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111161636.png)
 
 cross-attention：通过 target 中的 query 和 source 中的所有 value 求得的，学习的是 target 中的每个元素和 source 中的所有元素的相关度；
 
