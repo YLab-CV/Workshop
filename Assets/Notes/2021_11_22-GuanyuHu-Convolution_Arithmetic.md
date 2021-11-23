@@ -39,13 +39,13 @@ o &= i - k + 1 \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_char.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_char.png)
 
 ---
 
 ##### 1.1.1.2. 示例
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_num.png)
 
 **手写卷积代码：**
 
@@ -117,7 +117,7 @@ o &= i + 2p - k + 1 \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p1_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p1_num.png)
 
 ```python
 torch_conv_p1_s1 = torch.nn.Conv2d(1, 1, kernel_size=2, stride=1, padding=1, dilation=1, bias=False)  
@@ -161,7 +161,7 @@ o &= i + 2p - k + 1 \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_same_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_same_num.png)
 
 ```python
 K_same = torch.tensor(
@@ -201,7 +201,7 @@ $$
 2. 若要使 Normal Convolution 实现 output 和 input 尺寸相同 则 $k$ 必须是**奇数**，否则无法实现
 3. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\frac { i + 2p - k }{s}$）从而判断 output 的尺寸
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq2.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq2.png)
 
 ```python
 X_conv_s2_p0 = torch.tensor(
@@ -243,7 +243,7 @@ $$
 2. 若要使 Normal Convolution 实现 output 和 input 尺寸相同 则 $k$ 必须是奇数，否则无法实现
 3. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\lfloor \frac {i + 2p - k }{s}\rfloor$）从而判断 output 的尺寸，考虑到 $i + 2p - k$ 不一定可以整除 $s$，这种情况下需要对步数向下取整，因为走不动就不走了
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq1.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq1.png)
 
 ```python
 X_conv_s2_p0 = torch.tensor(
@@ -282,7 +282,7 @@ o &= \lfloor \frac { i + 2p - k }{s} \rfloor + 1 \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p2_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p2_num.png)
 
 ```python
 K_same_s2_p2 = torch.tensor(
@@ -314,7 +314,7 @@ Transposed Convolution: $Y=K ☆ X$
 
 Normal Convolution: $Y=K \bigstar X$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_char.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p0_char.png)
 
 $$
 \begin{align*}
@@ -391,7 +391,7 @@ $$
 
 Transposed Convolution: $Y'=K^T ☆ X'$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_char.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_char.png)
 
 $$
 \begin{align*}
@@ -502,20 +502,20 @@ $$
 
 ##### 2.2.1.1. Arithmetic
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_char.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_char.png)
 
 ---
 
 ###### 2.2.1.1.1. E.g. 1
 
 此处可证明把 Normal Convolution 的 output 和 kernel 拿来作 Transposed Convolution 的 Input 和 Kernel， Transposed Convolution 的 output 和 Normal Convolution 的 Input 值不同，但 size 相同。
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_arithmetic_num.png)
 
 ---
 
 ###### 2.2.1.1.2. E.g. 2
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_num_eg2.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_num_eg2.png)
 
 ```python
 X_trans = torch.tensor(
@@ -563,11 +563,11 @@ $$
 1. Transposed Convolution 等价于对 Input 做 Padding 为 $k-1$ 的 Direct Convolution
 2. 做等价 Direct Convolution 时要对 Kernel 做**水平垂直**翻转
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_char_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_char_to_conv.png)
 
 ---
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_num_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p0_num_to_conv.png)
 
 ```python
 print(X_trans.shape)  
@@ -605,7 +605,7 @@ print('--------2.2.1.2 No Zero Padding, Unit Strides, Transposed: Stride=1, Padd
 
 ##### 2.3.1.1. Arithmetic
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p1_num.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p1_num.png)
 
 ---
 
@@ -630,7 +630,7 @@ $$
 2. 做等价 Direct Convolution 时要对 Kernel 做**水平垂直**翻转
 3. Transposed Convolution 的 Padding 等价于对 output 做 Padding, 所以要在最后减去 $2p$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p1_num_to_conv_eg1.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p1_num_to_conv_eg1.png)
 
 ```python
 torch_trans_conv_s1_p1 = nn.ConvTranspose2d(1, 1, kernel_size=2, stride=1, padding=1, output_padding=0, dilation=1, bias=False)
@@ -658,7 +658,7 @@ o = o' &= i' + 2p' - k' + 1-2p \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p2_num_to_conv_eg2.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s1_p2_num_to_conv_eg2.png)
 
 ```python
 X_trans_s1_p2 = torch.tensor(
@@ -707,7 +707,7 @@ $$
 3. Transposed Convolution 的 Padding 等价于对 output 做 Padding, 所以要在最后减去 $2p$
 4. 在 $p=\frac{k - 1}{2}, \ (k=2n+1)$  时 (kernel 是**奇数** $p$ 是 kernel 尺寸 $k-1$ 的一半时) input 和 output 大小一样
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_same_num_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_same_num_to_conv.png)
 
 ```python
 X_trans_Same = torch.tensor(
@@ -762,7 +762,7 @@ $$
 5. 无论 Transposed Convolution 的 Stride 为几，等价的 Driect Convolution 都要做 Stride=1 的操作
 6. 在元素的每行和每列之间（共 $i-1$ 个位置）插入 $s-1$ 行和列的 $0$ （如果 $s=0$ 则插入 0 行/列，也就是不加）。
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p0_num_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p0_num_to_conv.png)
 
 ```python
 torch_trans_conv_s2_p0 = nn.ConvTranspose2d(1, 1, kernel_size=2, stride=2, padding=0, output_padding=0, dilation=1, bias=False)
@@ -788,7 +788,7 @@ o = o' &= s(i'-1) + k'  - 2p \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p0_num_to_conv_eq2.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p0_num_to_conv_eq2.png)
 
 ```python
 X_trans_s2_p0 = torch.tensor(
@@ -827,7 +827,7 @@ o = o' &= s(i'-1) + k'  - 2p \\
 \end{align*}
 $$
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p1_num_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_s2_p1_num_to_conv.png)
 
 ```python
 torch_trans_conv_s2_p1 = nn.ConvTranspose2d(1, 1, kernel_size=2, stride=2, padding=1, output_padding=0, dilation=1, bias=False)
@@ -871,7 +871,7 @@ $$
 6. 在元素的每行和每列之间（共 $i-1$ 个位置）插入 $s-1$ 行和列的 $0$ （如果 $s=0$ 则插入 0 行/列，也就是不加）。
 7. 在 Transposed Convocation 中，stride $s \neq 1$ 时可以有不同尺寸的 output，为了实现这种需求我们只能在 output 计算以后补上 $a$ 行和 $a$ 列 $(0<a<s)$，一般我们补在右边和底边
 
-![](Notes/imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_output_padding_num_to_conv.png)
+![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/transposed_convolution_output_padding_num_to_conv.png)
 
 ```python
 torch_trans_conv_s2_op1 = nn.ConvTranspose2d(1, 1, kernel_size=2, stride=2, padding=0, output_padding=1, dilation=1, bias=False)
