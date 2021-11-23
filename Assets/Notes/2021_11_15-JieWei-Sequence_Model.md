@@ -69,8 +69,8 @@ Decoder 端：两种形式
 
 | Name      | Structure                                 | Formula                                                      |
 | --------- | ----------------------------------------- | ------------------------------------------------------------ |
-| Cho       | ![](imgs/Pasted-image-20211111112253.png) | $h_{t}=tanh(W[h_{t-1},y_{t-1},c]+b)$<br>$o_{t}=softmax(Vh_{t}+b)$ |
-| Sutskever | ![](imgs/Pasted-image-20211111112618.png) | $h_{t}=tanh(W[h_{t-1},y_{t-1}]+b)$  $o_{t}=softmax(Vh_{t}+b)$<br>$h_{0}=c$ |
+| Cho       | ![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111112253.png) | $h_{t}=tanh(W[h_{t-1},y_{t-1},c]+b)$<br>$o_{t}=softmax(Vh_{t}+b)$ |
+| Sutskever | ![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111112618.png) | $h_{t}=tanh(W[h_{t-1},y_{t-1}]+b)$  $o_{t}=softmax(Vh_{t}+b)$<br>$h_{0}=c$ |
 
 ## 3. Attention Mechanism
 
@@ -113,8 +113,8 @@ $$
 
 | Name     | Structure                                 | Formula                                                      |
 | -------- | ----------------------------------------- | ------------------------------------------------------------ |
-| Bahdanau | ![](imgs/Pasted-image-20211111155826.png) | 1) Context vector <br>$\begin{aligned} &c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i} \\ &\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)} \\ &e_{t i}=v_{a}^{\top} \tanh \left(W_{a}\left[s_{i-1}, h_{i}\right]\right) \end{aligned}$<br/><br/>2) Hidden layer parameters  <br/><br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}, c_{t}\right]\right)$<br/>$o_{t}=\operatorname{softmax}\left(V s_{t}\right)$ |
-| Luong    | ![](imgs/Pasted-image-20211111161238.png) | 1) Hidden layer parameters <br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}\right]\right)$<br> <br/>2) Context vector  <br/>$c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i}$<br/>$\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)}$<br>$e_{t i}=s_{t}^{\top} W_{a} h_{i}$<br><br/>3) Hidden layer parameters<br> $\tilde{s}_{t}=\tanh \left(W_{c}\left[s_{t}, c_{t}\right]\right)$<br> $o_{t}=\operatorname{softmax}\left(V \tilde{s}_{t}\right)$ |
+| Bahdanau | ![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111155826.png) | 1) Context vector <br>$\begin{aligned} &c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i} \\ &\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)} \\ &e_{t i}=v_{a}^{\top} \tanh \left(W_{a}\left[s_{i-1}, h_{i}\right]\right) \end{aligned}$<br/><br/>2) Hidden layer parameters  <br/><br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}, c_{t}\right]\right)$<br/>$o_{t}=\operatorname{softmax}\left(V s_{t}\right)$ |
+| Luong    | ![](imgs/2021_11_15-JieWei-Sequence_Model/Pasted-image-20211111161238.png) | 1) Hidden layer parameters <br/>$s_{t}=\tanh \left(W\left[s_{t-1}, y_{t-1}\right]\right)$<br> <br/>2) Context vector  <br/>$c_{t}=\sum_{i=1}^{T} \alpha_{t i} h_{i}$<br/>$\alpha_{t i}=\frac{\exp \left(e_{t i}\right)}{\sum_{k=1}^{T} \exp \left(e_{t k}\right)}$<br>$e_{t i}=s_{t}^{\top} W_{a} h_{i}$<br><br/>3) Hidden layer parameters<br> $\tilde{s}_{t}=\tanh \left(W_{c}\left[s_{t}, c_{t}\right]\right)$<br> $o_{t}=\operatorname{softmax}\left(V \tilde{s}_{t}\right)$ |
 
 ## 4. Transformer
 
