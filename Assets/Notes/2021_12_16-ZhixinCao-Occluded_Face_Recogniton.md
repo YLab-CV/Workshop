@@ -57,7 +57,7 @@
 
 ## 3.FROM（face recognition with occlusion masks)
 
-![image-20211216003848025](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216003848025.png)
+![image-20211216003848025](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216003848025.png)
 
 ### 3.1 feature pyramid extractor
 
@@ -69,7 +69,7 @@
 
 **输出：**金字塔特征X1、X2和X3，其中包含X3包含全局信息和局部信息，被送入mask decoder获得mask用于去除X1被破坏的元素
 
-![image-20211216085732131](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216085732131.png)
+![image-20211216085732131](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216085732131.png)
 
 
 
@@ -81,7 +81,7 @@
 
 - 原因分析：需要得到不依赖于身份的只依赖于遮挡位置的mask，fc层保留了身份信息的同时丢失了空间信息
 
-**结构：**![image-20211216090409471](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216090409471.png)
+**结构：**![image-20211216090409471](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216090409471.png)
 
 **生成的mask需要达到的目标：**
 
@@ -94,17 +94,17 @@
 
 ### 3.3 occlusion pattern predictor
 
-![image-20211216090847568](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216090847568.png)
+![image-20211216090847568](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216090847568.png)
 
 **引入目的：**监督mask的学习，用于鼓励mask decoder生成与输入人脸的遮挡模式相关的mask
 
 **启发思想：**一般相邻块在实际应用中具有相同的遮挡状态，eg.如果嘴被遮挡，鼻子很有可能也被遮挡
 
-**实现思路：**将人脸分成K*K块，用不同大小的矩形覆盖相邻的块，右边的数值矩阵展示了每个不同大小遮挡矩阵能产生的遮挡模式的个数，其中（i，j)代表用i * j大小的矩阵覆盖人脸的遮挡模式的数量。最终我们能够获得![image-20211216092340419](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216092340419.png)种遮挡模式，比![image-20211216170827460](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216170827460.png)少了很多
+**实现思路：**将人脸分成K*K块，用不同大小的矩形覆盖相邻的块，右边的数值矩阵展示了每个不同大小遮挡矩阵能产生的遮挡模式的个数，其中（i，j)代表用i * j大小的矩阵覆盖人脸的遮挡模式的数量。最终我们能够获得![image-20211216092340419](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216092340419.png)种遮挡模式，比![image-20211216170827460](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216170827460.png)少了很多
 
 **输入输出：**输入mask，输出occlusion feature vector
 
-**结构：**![image-20211216092502021](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216092502021.png)
+**结构：**![image-20211216092502021](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216092502021.png)
 
 **备注：**能够很好的应用于干净人脸识别，即用0*0块的矩形去覆盖
 
@@ -114,27 +114,27 @@
 
    - 在训练阶段，我们得到了每幅图像的遮挡位置。对于每个图像Xi，我们通过将其遮挡位置与226个(当K=5时)遮挡模式进行匹配来获得其遮挡模式yi。我们的匹配策略是计算遮挡模式和226个参考模式之间的IOU得分，然后选取IOU得分最大的模式作为对应的标签。
 
-     ![image-20211216094532435](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216094532435.png)
+     ![image-20211216094532435](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216094532435.png)
      
      下面展示了输入图像和预测出来的遮挡模式：
      
-     ![image-20211216093332214](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216093332214.png)
+     ![image-20211216093332214](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216093332214.png)
 
 2. 描述为回归问题(pattern regression)
 
    - 不进行块划分的情况下直接回归遮挡区域的2D坐标，在训练阶段，我们对每一张人脸图像都有遮挡的矩形位置，并直接以左上角和右下角的二维坐标作为label，需要occlusion pattern predictor获得的vector
 
-     ![image-20211216094440753](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216094440753.png)
+     ![image-20211216094440753](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216094440753.png)
 
 
 
 ### 3.4 loss
 
-![image-20211216092707661](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216092707661.png)
+![image-20211216092707661](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216092707661.png)
 
 其中识别人脸使用margin-based softmax loss(CosFace Loss，其中m1=m2=0):
 
-![image-20211216105904694](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20211216105904694.png)
+![image-20211216105904694](imgs/2021_12_16-ZhixinCao-Occluded_Face_Recogniton/image-20211216105904694.png)
 
 
 
