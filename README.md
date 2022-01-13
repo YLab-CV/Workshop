@@ -2,7 +2,7 @@
 date created: 2021-10-15, Friday, 13:58:57
 date modified: 2021-11-23, Tuesday, 21:03:19
 latest modified author: Guanyu Hu
-date latest modified: 2022-01-07,23:09:40
+date latest modified: 2022-01-13,23:00:45
 ---
 
 # YLab-CV-Workshop
@@ -46,4 +46,5 @@ date latest modified: 2022-01-07,23:09:40
 | 2021-12-03 | Week07 | ViT & Masked Autoencoders                       | 张硕         | [Slide](Assets/Slides/2021_12_3-ZhangShuo-ViT_MAE.pptx) | [Note](Assets/Notes/2021_12_3-ZhangShuo-ViT_MAE.md) / [PDF](Assets/Notes/Notes_PDF/2021_12_3-ZhangShuo-ViT_MAE.pdf) | -                                                                                |   |
 | 2021-12-03 | Week08 | Talking Head Paper Sharing                      | 宋怡馨        | [Slide](Assets/Slides/2021_12_13-YixinSong-Talking_Head_Generation.pptx) | -                                                                                                                                                        | -                                                                                |   |
 | 2021-12-16 | Week09 | Occluded Face Recogniton                        | 曹至欣        | [Slide ](Assets/Slides/2021_12_16-ZhixinCao-Occluded_Face_Recognition.pptx) | [Note](Assets/Notes/2021_12_16-ZhixinCao-Occluded_Face_Recogniton.md) / [PDF](Assets/Notes/Notes_PDF/2021_12_16-ZhixinCao-Occluded_Face_Recognition.pdf) | -                                                                                |   |
-| 2022-01-06 | Week10 | Audio_Signal_Processing_Part_1                  | 胡冠宇        | -                                                                                                                                                                       | [Note](Assets/Notes/2022_01_06-GuanyuHu-Audio_Signal_Processing.md) / [PDF](Assets/Notes/Notes_PDF/2022_01_06-GuanyuHu-Audio_Signal_Processing.pdf) | [Code](Assets/Files/Codes/2022_01_06-GuanyuHu-Audio_Signal_Processing.7z)                                                                                |   |
+| 2022-01-06 | Week10 | Audio Signal Processing Part_1                  | 胡冠宇        | -                                                                                                                                                                       | [Note](Assets/Notes/2022_01_06-GuanyuHu-Audio_Signal_Processing.md) / [PDF](Assets/Notes/Notes_PDF/2022_01_06-GuanyuHu-Audio_Signal_Processing.pdf) | [Code](Assets/Files/Codes/2022_01_06-GuanyuHu-Audio_Signal_Processing.7z) |   |
+| 2022-01-13 | Week11 | Audio Signal Processing Part_2                  | 胡冠宇        | -                                                                                                                                                                       | [Note](Assets/Notes/2022_01_06-GuanyuHu-Audio_Signal_Processing.md) / [PDF](Assets/Notes/Notes_PDF/2022_01_06-GuanyuHu-Audio_Signal_Processing.pdf) | [Code](Assets/Files/Codes/2022_01_06-GuanyuHu-Audio_Signal_Processing.7z) |   |
