@@ -1,16 +1,24 @@
-# Audio Signal Processing 知识点总结
+---
+date created: 2021-12-23,11:12:08
+date latest modified: 2022-01-05,22:26:37
+---
 
-胡冠宇
+# Audio Signal Processing
 
-2022-01-06
+主讲人：胡冠宇 
+
+时间：2022-01-06
+
+
 
 # Basic of Sound
 
- [Audio Signal Processing for Machine Learning - YouTube](https://youtu.be/iCwMQJnKk2c)
+
 
 ## 1. Periodic and Aperiodic Sound
 
 周期性和非周期性声音
+
 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/2.jpg)
 
 ## 2. Waveform - 波形图
@@ -22,7 +30,8 @@
 - Timbre - 音色；音质；音品
 
 ### 2.1. Sin Wave
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/SinWave.svg)
+
+![SinWave](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/SinWave.svg)
 
 **公式**
 
@@ -57,7 +66,8 @@ $$
 - A4 和 A5 听起来一样，但是 A5 要高一些，pitch-frequency 图如下
 
 ### 4.2. Pitch-frequency Chart
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/PitchVsFrequency.png)
+
+![PitchVsFrequency](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/PitchVsFrequency.png)
 
 ### 4.3. Mapping Pitch to Frequency
 
@@ -224,7 +234,6 @@ $$
 
 **代码**
 
-资源 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/resources.zip)
 
 ```python
 import os
@@ -294,7 +303,6 @@ The idea behind this is that a message signal(紫色) you want to use to modulat
 基本同上原理，应用消息信号到载波信号，即可得到调幅的信号，resoruces 文件夹里面有示例音乐
 
 ![9](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/9.jpg)
-
 
 
 
@@ -414,6 +422,10 @@ $Q:$bit depth
 - Correlates with dynamic range
 
 
+---
+date created: 2021-12-24,14:03:52
+date latest modified: 2021-12-30,19:11:36
+---
 
 # Audio Features
 
@@ -949,7 +961,7 @@ plt.show()
 
 
 
-# Fourier Transform (FT)
+# 傅里叶分析
 
  [纯干货数学推导_傅里叶级数与傅里叶变换_Part6_总结与闲话（完）_哔哩哔哩_bilibili](https://www.bilibili.com/video/BV1St41117fH)
  [傅里叶变换学习心得 - 知乎](https://zhuanlan.zhihu.com/p/66117227)
@@ -965,139 +977,6 @@ plt.show()
 - 纵轴：某一个频率在整个 signal 中的重要性
 
 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102174125.png)
-
-## 2. 推导过程 (略)
-
-
-
-## 3. Deeper Intuition
-
-- Compare signal with sinusoids of various frequencies - 将信号与各种频率的正弦波进行比较
-- For each frequency we get a magnitude and a phase(相位) - 每个频率，我们有一个“大小/重要度”和相位
-- High magnitude indicates high similarity between the signal and a sinusoid - 高的”量级“（？大小，重要度，重合度）意味着原始时域信号和当前正弦波之间的相似度高
-
-### 3.1. 代码演示
-
-加载 signal，画出时域图
-
-```python
-import difflib
-import librosa
-import librosa.display
-import scipy as sp
-import matplotlib.pyplot as plt
-import numpy as np
-
-audio_path = "audio/piano_c.wav"
-
-# load audio file
-signal, sr = librosa.load(audio_path)
-
-# plot waveform
-# 横轴=Time，纵轴=振幅
-plt.figure(figsize=(18, 8))
-librosa.display.waveshow(signal, sr=sr, alpha=0.5)
-plt.show()
-```
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102233332.png)
-
-进行傅里叶变换
-
-```python
-# derive spectrum(频谱) using FT
-len(signal)
-ft = sp.fft.fft(signal)
-len(ft)
-magnitude = np.absolute(ft)
-frequency = np.linspace(0, sr, len(magnitude))  # (0, 22050, 33968)
-len(frequency)
-
-# plot spectrum
-plt.figure(figsize=(18, 8))
-plt.plot(frequency[:5000], magnitude[:5000])  # magnitude spectrum
-plt.xlabel("Frequency (Hz)")
-plt.ylabel("Magnitude")
-plt.show()
-```
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102233429.png)
-
-放大查看细节
-
-```python
-d = 1 / sr  # 每个采样所用的时间
-d_523 = 1 / 523  # 频率在523hz时，每一个周期需要用的时间
-d_400_samples = 400 * d  # 400 个采样点用的时间,满足在523频率上10个循环的时间
-
-# zoom in to the waveform
-samples = range(len(signal))
-t = librosa.samples_to_time(samples, sr=sr)
-
-plt.figure(figsize=(18, 8))
-plt.plot(t[10000:10400], signal[10000:10400])
-plt.xlabel("Time (s)")
-plt.ylabel("Amplitude")
-plt.show()
-```
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102233703.png)
-
-我们的目的是，比较正弦波和真实的 signal 的相似性 (magnitude)
-
-构建两个 sinusoid，可以看到 phase (相位) 不同，图像不同（左加右减）
-
-```python
-# create a sinusoid
-f = 523
-phase = 0
-phase2 = 0.2
-
-sin = 0.5 * np.sin(2 * np.pi * (f * t - phase))
-sin2 = 0.5 * np.sin(2 * np.pi * (f * t - phase2))
-
-plt.figure(figsize=(18, 8))
-plt.plot(t[10000:10400], sin[10000:10400], color="r")
-plt.plot(t[10000:10400], sin2[10000:10400], color="y")
-
-plt.xlabel("Time (s)")
-plt.ylabel("Amplitude")
-plt.show()
-```
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102233836.png)
-
-比较正弦波和真实的 signal 的相似性 (magnitude)
-
-```python
-# compare signal and sinusoid
-f = 523
-phase = 0.55
-sin = 0.1 * np.sin(2 * np.pi * (f * t - phase))
-
-plt.figure(figsize=(18, 8))
-plt.plot(t[10000:10400], signal[10000:10400])
-plt.plot(t[10000:10400], sin[10000:10400], color="r")
-
-# 如何计算两个波形的”相似度“？
-# 两者相乘，求积分，即为填充面积 - magnitude
-plt.fill_between(t[10000:10400], sin[10000:10400] * signal[10000:10400], color="y")
-
-plt.xlabel("Time (s)")
-plt.ylabel("Amplitude")
-plt.show()
-```
-
-下面是 phase=0 的图：
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102234151.png)
-
-下面是 phase=0.4 的图：
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102234205.png)
-
-下面是 phase=0.55 的图：
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102234003.png)
-
-可见在 0.55 时 magnitude 最大，也就是说和原始信号最相似
 
 ### 3.2. 傅里叶变换的过程
 
@@ -1136,45 +1015,21 @@ $$
 
 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220102235644.png)
 
-## 4. Complex Number
-
-### 4.1. 复数
-
-上一章中的 $d_f$ 只能表示 magnitude 无法表示 phase，所以需要引入复数
-
-复数可以用以下公式表示，a 是实部，b 是虚部
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103000507.png)
-
-### 4.2. 笛卡尔坐标系 - Cartesian Coordinates
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103000725.png)
-
-### 4.3. 欧拉公式
-
-$$
-e^{i \gamma}=\cos (\gamma)+i \sin (\gamma)
-$$
-
-将欧拉公式和复平面公式结合：
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103001335.png)
-**复数可以表示为以下形式**：
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103001402.png)
-
 
 
 # Discrete Fourier Transform (DFT)
 
  [深入理解离散傅里叶变换(DFT) - 知乎](https://zhuanlan.zhihu.com/p/71582795)
 
-离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在**时域**和**频域**上都呈离散的形式，将信号的时域采样变换为其 DTFT 的频域采样。
+离散傅里叶变换（Discrete Fourier Transform，缩写为 DFT），是傅里叶变换在**时域**和**频域**上都呈离散的形式，将信号的时域采样变换为其频域采样。
 
 在形式上，变换两端（时域和频域上）的序列是**有限长**的。
 
 ## 1. Digital Signal
 
 Moving from continuous Fourier Transform to Discrete Fourier Transform
+
+$T$ 为采样周期
 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103214410.png)
 
 ## 2. 由连续到离散
@@ -1283,26 +1138,28 @@ def plot_magnitude_spectrum(signal, sr, title, f_ratio=1.0):
 plot_magnitude_spectrum(violin_c4, sr, "violin", f_ratio=0.1)
 ```
 
-![Pasted image 20220103210242](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103210242.png)
+![[Pasted image 20220103210242.png]]
 
 ```python
 plot_magnitude_spectrum(piano_c5, sr, "piano", 0.1)
 ```
 
-![Pasted image 20220103210252](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103210252.png)
+![[Pasted image 20220103210252.png]]
 
 ```python
 plot_magnitude_spectrum(sax_c4, sr, "sax", 0.1)
 ```
 
-![Pasted image 20220103210300](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103210300.png)
+![[Pasted image 20220103210300.png]]
 
 ```python
 plot_magnitude_spectrum(noise, sr, "noise", 0.1)
 plt.show()
 ```
 
-![Pasted image 20220103210307](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220103210307.png)
+![[Pasted image 20220103210307.png]]
+
+
 
 
 # Short-time Fourier Transform
@@ -1361,7 +1218,7 @@ $mH$: Starting sample of current frame-当前帧采样的起始位置
 
 **DFT - 离散傅里叶变换**
 
-- Spectral vector (# frequency bins) ，每个频率一个复数对应（magnitude, phase)
+- Spectral vector (#frequency bins) ，每个频率一个复数对应（magnitude, phase)
 - N complex Fourier coefficients，设采样点数量为 N，则一共输出的是 N 个复数的“傅里叶系数”
 
 **STFT - 短时傅里叶变换**
@@ -1399,7 +1256,7 @@ STFT output shape: (501,19)
 
 取值： 512,1024,2048,4096,8192
 
-当增大 frame size 的时候，即一个 frame 中的 sample 采样点的数量增大的时候，则因为 freq 频率是(frame_size)/2+1，所以，freq resolution 提高（包括的频率的数量提高）；同时，因为 frame size 增大，则相同的一段语音，能够被切分成的 frame 的数量减少。（例如 10000 秒的音频，当 frame=1 的时候，可以被切成 10000 份，而当 frame=1000 的时候，只有 10 份了）。反之亦然。
+当增大 frame size 的时候，即一个 frame 中的 sample 采样点的数量增大的时候，则因为 freq 频率是$(\#frame\_size)/2+1$，所以，freq resolution 提高（包括的频率的数量提高）；同时，因为 frame size 增大，则相同的一段语音，能够被切分成的 frame 的数量减少。（例如 10000 秒的音频，当 frame=1 的时候，可以被切成 10000 份，而当 frame=1000 的时候，只有 10 份了）。反之亦然。
 
 ### 7.2. Hop Size
 
@@ -1411,7 +1268,7 @@ STFT output shape: (501,19)
 
 剩余的最重要的一个要素，是 “分窗函数”，例如，下图展示了一个 Hann 分窗函数的定义和图像：（90% 的情况下此函数被使用）
 
-![2 2 2 Windowing](03_Audio_Features.md#2%202%202%20Windowing)
+**见前边章节相关内容**
 
 ## 8. 声音”可视化“
 
@@ -1552,7 +1409,7 @@ X 轴为时间，Y 轴为 Frequency ，每一个点表示在每个时间点呈�
 
 **Mel-Frequency Analysis**
 
-- Mel-Frequency analysis of speech is based on human perception experiments
+- Mel-Frequency analysis of speech is based on **human perception** experiments
 - It is observed that human ear acts as filter – It concentrates on only certain frequency components
 - These filters are non-uniformly spaced on the frequency axis
 	- More filters in the low frequency regions
@@ -1733,293 +1590,6 @@ plt.show()
 下图为 90 bands 时候的图像
 ![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220104205519.png)
 
-
-
-# Mel-Frequency Cepstral Coefficients (MFCC)
-
-- 以下部分笔记截图来自： [www.speech.cs.cmu.edu/15-492/slides/03_mfcc.pdf](http://www.speech.cs.cmu.edu/15-492/slides/03_mfcc.pdf)
-
-- [语音信号的梅尔频率倒谱系数(MFCC)的原理讲解及python实现 - 凌逆战 - 博客园](https://www.cnblogs.com/LXP-Never/p/10918590.html#blogTitle10)
-
-  
-
-- Mel-Spectrogram and MFCCs | Lecture 72 (Part 1) | Applied Deep Learning
-	- [GitHub - maziarraissi/Applied-Deep-Learning: Applied Deep Learning Course](https://www.youtube.com/watch?v=hF72sY70_IQ)
-	- [GitHub - maziarraissi/Applied-Deep-Learning: Applied Deep Learning Course](https://github.com/maziarraissi/Applied-Deep-Learning)
-	
-- [AI大语音（四）| MFCC特征提取（深度解析） - 知乎](https://zhuanlan.zhihu.com/p/181718235)
-
-  
-## 1. MFCC
-
-MFCC 中有三个重要的概念：
-
-**Mel-Frequency**，**Cepstral**，以及 **Coefficients**
-
-**Mel-frequency** -> Mel-scale 下的频率；（类似和人的声音感知相关，1000Hz 以下近似线性；之上就是对数相关度了）
-
-**Cepstral**:
-
-- Cepstral - adj.
-- Cepstrum - n. 倒频谱  -> Spectrum - n. 频谱
-- quefrency - n. 倒频率 -> frequency - n. 频率
-- liftering - n. 同态滤波 -> filtering - n. 过滤
-- rhamonic ？ -> harmonic - 谐波
-
-文字游戏罢了
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220104211559.png)
-
-## 2. Computing the Cepstrum
-
-这里的$x(t)$ 为时域信号，x 轴为 Time，y 轴为 Amplitude(振幅)；
-
-$\mathcal{DFT}[x(t)]$ 经过离散傅里叶变换得到 power spectrum，x 轴为 frequency，y 轴为 power(能量)；
-
-$log(\mathcal{DFT}\{x(t)\})$ -> 得到 log power spectrum x 轴不变，y 轴变成 Magitude，单位为 dB；
-
-在 Log power spectrum 的基础上，再进行一次逆傅里叶变换($\mathcal{IDFT}$)，则得到”倒频谱“。
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/MFCC.svg)
-
-## 3. Visualising the Cepstrum
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/cepstrum.svg)
-
-倒频谱”的单位是“Quefrency”，上图右边的那个波峰，其名字为"1st rhamonic", it reflects the harmonic structure (谐波结构) of the original signal that is represented in a periodic way in the log power spectrum.
-
-## 4. Spectrum
-
-### 4.1. A Sample Speech Spectrum
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105160117.png)
-
-## 5. 如何理解“倒频谱”
-
-### 5.1. The Vocal Tract - 声道
-
-Vocal tract acts as a filter
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/21.jpg)
-
-**左边：喉脉冲波**
-
-single noisy signal, high-pitched signal, that are get generated by the vocal folds(s) (其中包括了 pitch, frequency 等信息）
-
-**中间：声道**
-
-filtering the speech from left-hand-side and then create the final right-hand-side speech signal (声带)  - 音色，phonemes 等信息被加进来了，例如元音和辅音
-
-**右边：语音信号**
-
-经过中间的”声道“产生的结果。
-
-### 5.2. Understanding the Cepstrum
-
-**Log-spectrum**: Log amplitude spectrum of short amount speech
-
-- Peaks denote dominant frequency components in the speech signal
-- Peaks are referred to as formants
-- Formants carry the identity of the sound
-
-**Spectral envelope**:
-
-- smoothen the signal, take the envelope, and get the spectral envelop 包络, 上面的 pick (红色圆圈) 指定是 formants (共振峰), which carry identity of sound, provides us information about timbre about the different phonemes that we have in speech, 这依赖于你的声道的形状 (如何发声) ,
-- **Sounds can be identified much better by the Formants and by their transitions**
-- Formants and a smooth curve connecting them
-- This Smooth curve is referred to as spectral envelope
-
-**Spectral detail**: subtract the two and what remains is spectral detail, it's a lot like a quickly changing information here, it maps nicely into the glottal pulse (声门的脉冲)
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220104234638.png)
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220104235446.png)
-
-### 5.3. Formalising Speech
-
-**Our goal**
-
-We want to separate spectral envelope and spectral details from the spectrum.
-
-**Time Domain**
-
-人的发声过程可以看作是肺里的气流通过声带这个线性系统。如果用$e(t)$表示声音的输入激励（音高），$h(t)$表示声带的响应（也即我们需要获取的特征），那么听到的语音信号为两者的卷积:
-
-$$
-x(t) = e(t)* h(t)
-$$
-
-where $e(t)$ is glottal pulse, $h(t)$ is vocal tract frequency response
-
-**Frequency Domain**
-
-频域内则可以表示为两者的乘积，move time domain to frequency domain by applying FT.
-
-$E(t)$ is glottal pulse 在频域上的函数, $H(t)$ is vocal tract 在频域上的函数
-
-$$
-\begin{gathered}
-X(t)=E(t) \cdot H(t) \\
-\Downarrow \\
-\log (X(t))=\log (E(t) \cdot H(t)) \\
-\Downarrow \\
-\log (X(t))=\log (E(t))+\log (H(t))
-\end{gathered}
-$$
-
-**这样就将乘法变成了加法**
-
-我们本身只有一个 Log Spectrum，目标是把这个 Log Spectrum 切分为两个部分
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105002355.png)
-
-### 5.4. 傅里叶逆变换
-
-对 Log Spectrum 做傅里叶变换称为傅里叶逆变换，x 轴从 Frequency domain 到 **Quefrency** domain
-
-IFFT of log spectrum would represent the signal in pseudo-frequency axis
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105161051.png)
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105161112.png)
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105161122.png)
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105161222.png)
-**Cepstrum**
-
-- x[k] is referred to as Cepstrum
-- h[k] is obtained by considering the low frequency region of x[k].
-- h[k] represents the spectral envelope and is widely used as feature for speech recognition
-
-• Cepstral coefficients h[k] obtained for Melspectrum are referred to as Mel-Frequency Cepstral Coefficients often denoted by _MFCC_
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105161316.png)
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105162542.png)
-
-语音信号的频谱可以看作是低频的包络和高频的细节相加，在得到倒谱系数后，我们只需要取低位的系数便可以得到包络信息。
-
-注意整个过程中我们并没有明确计算 $e(t)$ 和 $h(t)$ ，而是通过直接对语音信号 $x(t)$ 作倒谱分析，再提取低位的倒谱系数，就可以获取我们想要的声道特征。
-
-有意思的是，对数频谱作傅里叶反变换后的域被称为 quefrency domain（对应频域 frequency domain），quefrency domain 和时域 time domain 类似但不完全一样。提取 低位系数 的操作称为 low-time liftering（对应滤波操作 filtering）。同样地，我们可以通过 high-time liftering 来获取激励特征。
-
-## 6. Mel Frequency Cepstral Coefficients
-
-### 6.1. MFCC 计算步骤
-
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105163724.png)
-到 Mel-Scaling 的地方，应该是不陌生的，即生成 Mel filter banks。
-
-然后的一步，就有点难了：**Discrete Cosine Transform (DCT)**。类似于逆傅里叶变换( IDFT)。
-
-**Why Discrete Cosine Transform?**
-
-- Simplified version of Fourier Transform
-- Get real-valued coefficient - gives us back real valued coefficients and this is different from what a Fourier transform does, 这里我们不需要复数 coefficients，real value coefficients are more than enough for our purposes
-- Decorrelate energy in different Mel bands
-- Reduce # dimensions to represent spectrum
-
-### 6.2. How Many Coefficients? 一般需要多少系数？
-
-- Traditionally: first 12-13 coefficients
-First coefficients keep most information (e.g., formants/共振峰, spectral envelope/谱包络)
-- Use Δ and ΔΔ MFCCs (first and second derivations)
-	- first derivative = current frame's MFCCs - former frame's MFCCs
-	- second derivative = current frame's "first derivative" - former frame's "first derivative"
-- Total 39 coefficients per frame，一个 frame 里面是 39 个系数（13 是来自原来的 frame 的 MFCC 的，然后是 MFCC 的一阶 derivative 的 13 个，最后是 MCFF 的二阶 derivative13 个.）-后续有代码展示这个。
-
-### 6.3. Visualising MFCCs
-
-x 轴为 frames，y 轴为 coefficients
-![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/22.jpg)
-
-### 6.4. MFCCs Advantages
-
-- Describe the “large” structures of the spectrum - 大的结构化信息；整体的结构化信息，about formants, about phonemes, timbre 等等
-- Ignore fine spectral structures
-- Work well in speech and music processing
-
-### 6.5. MFCCs Disadvantages ：缺点
-
-- Not robust to noise：对噪声太敏感
-- Extensive knowledge engineering
-- Not efficient for synthesis，合成的时候，不太好用
-
-## 7. Code - Extract MFCC
-
-```python
-import librosa
-import librosa.display
-import IPython.display as ipd
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Loading audio files with Librosa
-
-audio_file = "audio/debussy.wav"
-# load audio files with librosa
-signal, sr = librosa.load(audio_file)
-```
-
-## 8. Extracting MFCCs
-
-```python
-# Extracting MFCCs
-mfccs = librosa.feature.mfcc(y=signal, n_mfcc=13, sr=sr)
-print(mfccs.shape)  # (13, 1292)
-
-# Visualising MFCCs
-plt.figure(figsize=(25, 10))
-librosa.display.specshow(mfccs,
-                         x_axis="time",
-                         sr=sr)
-plt.colorbar(format="%+2.f")
-plt.show()
-```
-
-![Pasted image 20220105181219](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181219.png)
-
-## 9. Computing First / Second MFCCs Derivatives
-
-```python
-delta_mfccs = librosa.feature.delta(mfccs)  
-delta2_mfccs = librosa.feature.delta(mfccs, order=2)  
-print(delta_mfccs.shape, delta2_mfccs.shape)  # (13, 1292) (13, 1292)
-```
-
-```python
-# visualize order 1
-plt.figure(figsize=(25, 10))
-librosa.display.specshow(delta_mfccs,
-                         x_axis="time",
-                         sr=sr)
-plt.colorbar(format="%+2.f")
-plt.show()
-```
-
-![Pasted image 20220105181523](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181523.png)
-
-```python
-# visualize order 2
-plt.figure(figsize=(25, 10))
-librosa.display.specshow(delta2_mfccs,
-                         x_axis="time",
-                         sr=sr)
-plt.colorbar(format="%+2.f")
-plt.show()
-```
-
-![Pasted image 20220105181540](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181540.png)
-
-## 10. Concatenate
-
-```python
-mfccs_features = np.concatenate((mfccs, delta_mfccs, delta2_mfccs))
-print(mfccs_features.shape)
-plt.figure(figsize=(25, 10))
-librosa.display.specshow(mfccs_features,
-                         x_axis="time",
-                         sr=sr)
-plt.colorbar(format="%+2.f")
-plt.show()
-```
-
-![Pasted image 20220105181628](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181628.png)
 
 
 
@@ -2256,7 +1826,7 @@ plt.colorbar(format="%+2.f")
 plt.show()
 ```
 
-![Pasted image 20220105181219](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181219.png)
+![[Pasted image 20220105181219.png]]
 
 ## 9. Computing First / Second MFCCs Derivatives
 
@@ -2276,7 +1846,7 @@ plt.colorbar(format="%+2.f")
 plt.show()
 ```
 
-![Pasted image 20220105181523](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181523.png)
+![[Pasted image 20220105181523.png]]
 
 ```python
 # visualize order 2
@@ -2288,7 +1858,7 @@ plt.colorbar(format="%+2.f")
 plt.show()
 ```
 
-![Pasted image 20220105181540](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181540.png)
+![[Pasted image 20220105181540.png]]
 
 ## 10. Concatenate
 
@@ -2303,4 +1873,249 @@ plt.colorbar(format="%+2.f")
 plt.show()
 ```
 
-![Pasted image 20220105181628](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105181628.png)
+![[Pasted image 20220105181628.png]]
+
+
+# Frequency-Domain Audio Features
+
+- Band energy ratio (BER) - 频带能量率
+- Spectral centroid (SC) - 谱心
+- Bandwidth (BW) - 带宽
+
+## 1. Extracting Frequency-domain Features
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105182310.png)
+
+## 2. Math Conventions
+
+- $m_t(n)$ -> Magnitude of signal at frequency bin n and frame $t$
+- $N$ -> # frequency bins
+
+## 3. Band Energy Ratio (BER)
+
+### 3.1. 作用
+
+- Comparison of energy in the lower/higher frequency bands
+- Measure of how dominant low frequencies are
+
+### 3.2. 公式
+
+$m_t(n)^2$: power of magnitude
+$F$: Split Frequency, 频率的分界线，见下图紫色的线(2000Hz)
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105182457.png)
+下图红框为一个 Frame，BER 是绿色/蓝色的比率。
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105184544.png)
+
+### 3.3. Band Energy Ratio applications：
+
+- Music / speech discrimination - 音乐和语音（说话）的区别分类
+- Music classification (e.g., music genre classification) - 音乐的曲风分类
+
+## 4. Spectral Centroid (SC)- 谱心
+
+- Centre of gravity of magnitude spectrum
+- Frequency band where most of the energy is concentrated - 富含能量的频带
+- Measure of “brightness” of sound - 声音响度的度量
+
+### 4.1. 公式
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105185338.png)
+
+### 4.2. Spectral Centroid Applications - 谱心的应用
+
+- Audio classification - 声音分类
+- Music classification - 音乐分类
+
+## 5. Bandwidth (BW)
+
+- Derived from spectral centroid - 衍生于”谱心“
+- Spectral range around the centroid - 范围
+- Variance from the spectral centroid - 与谱心的方差
+- Describe perceived timbre - 感知”音色“
+
+### 5.1. 计算公式
+
+Weighted mean of the distances of frequency bands from SC
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105185930.png)
+
+和方差的定义一样，BW 越大能量越分散，BW 越小能量越集中
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105190007.png)
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105190014.png)
+
+## 6. Code
+
+### 6.1. BER
+
+```python
+import math
+
+import matplotlib.pyplot as plt
+import numpy as np
+import librosa
+import IPython.display as ipd
+
+debussy_file = "audio/debussy.wav"
+redhot_file = "audio/redhot.wav"
+duke_file = "audio/duke.wav"
+```
+
+**load audio files with librosa**
+
+```python
+# load audio files with librosa
+debussy, sr = librosa.load(debussy_file)
+redhot, _ = librosa.load(redhot_file)
+duke, _ = librosa.load(duke_file)
+```
+
+**Extract spectrograms**
+
+```python
+# Extract spectrograms
+FRAME_SIZE = 2048
+HOP_SIZE = 512
+
+debussy_spec = librosa.stft(debussy, n_fft=FRAME_SIZE, hop_length=HOP_SIZE)
+redhot_spec = librosa.stft(redhot, n_fft=FRAME_SIZE, hop_length=HOP_SIZE)
+duke_spec = librosa.stft(duke, n_fft=FRAME_SIZE, hop_length=HOP_SIZE)
+
+print(debussy_spec.shape, debussy.shape, sr)  # (1025, 1292) (661500,) 22050
+print((661500 - 2048) / 512.)  # 1287.99
+```
+
+**Calculate Band Energy Ratio**
+
+```python
+## Calculate Band Energy Ratio
+def calculate_split_frequency_bin(split_frequency, sample_rate, num_frequency_bins):
+    """在第几个 bin 进行高低频率分割，Infer the frequency bin associated to a given split frequency."""
+
+    frequency_range = sample_rate / 2
+    frequency_delta_per_bin = frequency_range / num_frequency_bins
+    split_frequency_bin = math.floor(split_frequency / frequency_delta_per_bin)
+    return int(split_frequency_bin)
+
+split_frequency_bin = calculate_split_frequency_bin(2000, 22050, 1025)
+print(split_frequency_bin)  # 185
+
+def band_energy_ratio(spectrogram, split_frequency, sample_rate):
+    """Calculate band energy ratio with a given split frequency."""
+
+    split_frequency_bin = calculate_split_frequency_bin(split_frequency, sample_rate, len(spectrogram[0]))
+    band_energy_ratio = []
+
+    # calculate power spectrogram
+    power_spectrogram = np.abs(spectrogram) ** 2
+
+    # (1025=framesize/2+1, #frames) -> 转置之后是(#frames, framesize/2+1)
+    power_spectrogram = power_spectrogram.T
+
+    # calculate BER value for each frame
+    for frame in power_spectrogram:
+        sum_power_low_frequencies = frame[:split_frequency_bin].sum()
+        sum_power_high_frequencies = frame[split_frequency_bin:].sum()
+        band_energy_ratio_current_frame = sum_power_low_frequencies / sum_power_high_frequencies
+        band_energy_ratio.append(band_energy_ratio_current_frame)
+
+    return np.array(band_energy_ratio)
+
+ber_debussy = band_energy_ratio(debussy_spec, 2000, sr)
+ber_redhot = band_energy_ratio(redhot_spec, 2000, sr)
+ber_duke = band_energy_ratio(duke_spec, 2000, sr)
+
+len(ber_debussy) # 1292
+```
+
+**Visualise Band Energy Ratio**
+
+```python
+# Visualise Band Energy Ratio
+
+frames = range(len(ber_debussy))
+t = librosa.frames_to_time(frames, hop_length=HOP_SIZE)
+
+plt.figure(figsize=(25, 10))
+
+plt.plot(t, ber_debussy, color="b", label='debussy-classic')
+plt.plot(t, ber_redhot, color="r", label='redhot-pop')
+plt.plot(t, ber_duke, color="y", label='duke-jazz')
+plt.ylim((0, 20000))
+import matplotlib.font_manager as font_manager
+font = font_manager.FontProperties(family='Comic Sans MS',
+                                   weight='bold',
+                                   style='normal', size=22)
+plt.legend(prop=font, loc='upper center')
+plt.show()
+```
+
+debussy-蓝色 - classic 更多是低频；redhot-红色-而 pop/rock 则更多是平衡高频和低频
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105192826.png)
+
+### 6.2. SC
+
+```python
+sc_debussy = librosa.feature.spectral_centroid(y=debussy, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]  
+sc_redhot = librosa.feature.spectral_centroid(y=redhot, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]  
+sc_duke = librosa.feature.spectral_centroid(y=duke, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]  
+print(sc_debussy.shape) # (1292,)  
+```
+
+**Visualising spectral centroid**
+
+```python
+# Visualising spectral centroid  
+frames = range(len(sc_debussy))  
+t = librosa.frames_to_time(frames, hop_length=HOP_LENGTH)  
+print(len(t))  # 1292  
+  
+plt.figure(figsize=(25,10))  
+plt.plot(t, sc_debussy, color='b', label='debussy')  
+plt.plot(t, sc_redhot, color='r', label='redhot')  
+plt.plot(t, sc_duke, color='y', label='duke')  
+  
+import matplotlib.font_manager as font_manager  
+font = font_manager.FontProperties(family='Comic Sans MS',  
+ weight='bold',  
+ style='normal', size=22)  
+plt.legend(prop=font, loc='upper center')  
+plt.show()  
+  
+```
+
+redhot 的更高一些 = 谱心更高，频率高
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105193204.png)
+
+### 6.3. Spectral Bandwidth with Librosa
+
+**Calculate Spectral bandwidth with Librosa**
+
+```python
+# Spectral bandwidth with Librosa
+ban_debussy = librosa.feature.spectral_bandwidth(y=debussy, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]
+ban_redhot = librosa.feature.spectral_bandwidth(y=redhot, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]
+ban_duke = librosa.feature.spectral_bandwidth(y=duke, sr=sr, n_fft=FRAME_SIZE, hop_length=HOP_LENGTH)[0]
+print(ban_debussy.shape)  # (1292,)
+```
+
+**Visualising spectral bandwidth**
+
+```python
+# Visualising spectral bandwidth
+plt.figure(figsize=(25,10))
+
+plt.plot(t, ban_debussy, color='b', label='debussy')
+plt.plot(t, ban_redhot, color='r', label='redhot')
+plt.plot(t, ban_duke, color='y', label='duke')
+
+import matplotlib.font_manager as font_manager
+font = font_manager.FontProperties(family='Comic Sans MS',
+                                   weight='bold',
+                                   style='normal', size=22)
+plt.legend(prop=font, loc='upper center')
+plt.show()
+```
+
+![](imgs/2022_01_06-GuanyuHu-Audio_Signal_Processing/Pasted%20image%2020220105193536.png)
