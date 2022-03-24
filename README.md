@@ -52,6 +52,6 @@ date latest modified: 2022-01-13,23:00:45
 | 2022-03-03 | Week02 |                                            | 胡冠宇         |  | | -                                                                              |   |
 | 2022-03-10 | Week03 |                                            | 侯玉亮         |  | | -                                                                              |   |
 | 2022-03-17 | Week04 |                                            | 张硕           |  | | -                                                                              |   |
-| 2022-03-24 | Week05 |                                            | 魏洁           |  | | -                                                                              |   |
+| 2022-03-24 | Week05 |                                            | 魏洁           |-  |[Note](Assets/Notes/2022_03_24-JieWei-Conference.md) / [PDF](Assets/Notes/Notes_PDF/2022_03_24-JieWei-Conference.pdf) | -                                                                              |   |
 | 2022-03-31 | Week06 |                                            | 曹至欣          |  | | -                                                                              |   |
 | 2022-04-07 | Week07 |                                            | 宋怡馨          |  | | -                                                                              |   |
