@@ -1,6 +1,6 @@
 # Diffusion Model 扩散模型
 
-==😎 Edited at 2022-10-28 by **Song1xinn**==
+==😎 Edited at 2022-11-04 by **Song1xinn**==
 
 ## 1. Introduce
 
