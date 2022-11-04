@@ -1,8 +1,8 @@
 ---
 date created: 2021-10-15, Friday, 13:58:57
 date modified: 2021-11-23, Tuesday, 21:03:19
-latest modified author: Guanyu Hu
-date latest modified: 2022-01-13,23:00:45
+latest modified author: Yixin Song
+date latest modified: 2022-11-04,11:23:45
 ---
 
 # YLab-CV-Workshop

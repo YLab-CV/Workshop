@@ -163,13 +163,12 @@ $$
 
 ## References:
 
-[1] Radford A, Kim J W, Hallacy C, et al. Learning transferable visual models from natural language supervision[C]//International Conference on Machine Learning. PMLR, 2021: 8748-8763.
-[2] **Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.**
-[3] https://openai.com/dall-e-2/
-[4] https://huggingface.co/spaces/dalle-mini/dalle-mini
-[5] https://lilianweng.github.io/posts/2021-07-11-diffusion-models/
-[6] https://www.bilibili.com/video/BV1b541197HX/?spm_id_from=333.788&vd_source=7020551ede7e34125c5de7acc9417f8d
-[7] https://www.bilibili.com/video/BV1tY4y1N7jg/?spm_id_from=333.788.recommend_more_video.1&vd_source=7020551ede7e34125c5de7acc9417f8d
-[8] https://github.com/heejkoo/Awesome-Diffusion-Models
+[1] Radford A, Kim J W, Hallacy C, et al. Learning transferable visual models from natural language supervision[C]//International Conference on Machine Learning. PMLR, 2021: 8748-8763.  
+[2] **Ho J, Jain A, Abbeel P. Denoising diffusion probabilistic models[J]. Advances in Neural Information Processing Systems, 2020, 33: 6840-6851.**  
+[3] https://openai.com/dall-e-2/  
+[4] https://huggingface.co/spaces/dalle-mini/dalle-mini  
+[5] https://lilianweng.github.io/posts/2021-07-11-diffusion-models/  
+[6] https://www.bilibili.com/video/BV1b541197HX/?spm_id_from=333.788&vd_source=7020551ede7e34125c5de7acc9417f8d  
+[7] https://www.bilibili.com/video/BV1tY4y1N7jg/?spm_id_from=333.788.recommend_more_video.1&vd_source=7020551ede7e34125c5de7acc9417f8d  
+[8] https://github.com/heejkoo/Awesome-Diffusion-Models  
 [9] https://www.bilibili.com/video/BV1ad4y1c7vY/?spm_id_from=333.337.search-card.all.click&vd_source=7020551ede7e34125c5de7acc9417f8d
-
