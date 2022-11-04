@@ -10,17 +10,17 @@
 
 ==DALL·E 2==   CLIP + diffusion model
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/unCLIP.png" alt="img" style="zoom: 25%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/unCLIP.png" alt="img" style="zoom: 25%;" />
 
 ==CLIP==  
 
 > 1️⃣CLIP pre-trains an image encoder and a text encoder to predict which images were paired with which texts in our dataset.  2️⃣Then use this behavior to turn CLIP into a **zero-shot** **classifier**.  3️⃣Convert all of a dataset’s classes into captions such as “a photo of a *dog*” and **predict the class of the caption** with a given image.
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028102512738.png" alt="image-20221028102512738" style="zoom:40%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028102512738.png" alt="image-20221028102512738" style="zoom:40%;" />
 
 ### 1.2 Generation Models
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/generative-overview.png" alt="img" style="zoom: 20%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/generative-overview.png" alt="img" style="zoom: 20%;" />
 
 
 
@@ -32,7 +32,7 @@
 
 > Given a data point sampled from a real data distribution $ x_0∼q(x)$, let us define a ***forward diffusion process*** in which we add small amount of **Gaussian noise** to the sample in $T$ steps, producing a sequence of noisy samples $x_1,…,x_T$.  The data sample $ x_0$ gradually loses its distinguishable features as the step $t$ becomes larger. Eventually when $ T→∞$, $x_T $ is equivalent to an isotropic Gaussian distribution.
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028154018397.png" alt="image-20221028154018397" style="zoom: 50%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028154018397.png" alt="image-20221028154018397" style="zoom: 50%;" />
 
 **目标：** $q(x_T|x_0)$
 
@@ -82,9 +82,9 @@ $$
 
 > if we can reverse the above process and sample from $q(x_{t−1}|x_t)$, we will be able to recreate the true sample from a Gaussian noise input, $x_T∼N(0,I)$. Note that if $β_t$ is small enough, $q(x_{t−1}|x_t)$ will also be Gaussian. Unfortunately, we cannot easily estimate $q(x_{t−1}|x_t)$ because it needs to use the entire dataset and therefore we need to learn a **model $p_θ$** to approximate these conditional probabilities in order to run the *reverse diffusion process*.
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028201952767.png" alt="image-20221028201952767" style="zoom:55%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/image-20221028201952767.png" alt="image-20221028201952767" style="zoom:55%;" />
 
-<img src="2022_11_03-YixinSong-Diffusion_Model.assets/DDPM.png" alt="img" style="zoom: 15%;" />
+<img src="imgs/2022_11_03-YixinSong-Diffusion_Model.assets/DDPM.png" alt="img" style="zoom: 15%;" />
 
 **目标：** $p_\theta(x_0|x_T)$
 
