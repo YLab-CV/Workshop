@@ -2,7 +2,7 @@
 creator: Guanyu Hu
 author latest modified: Guanyu Hu
 date created: 2021-11-22, Monday, 23:31:38
-date latest modified: 2021-11-23, Tuesday, 17:27:32
+date latest modified: 2022-10-03, 23:05:49
 ---
 
 # Convolution Arithmetic Tutorial
@@ -82,7 +82,7 @@ X_conv = torch.reshape(X_conv, (1, 1, 3, 3))
 K = torch.reshape(K, (1, 1, 2, 2))
 ```
 
-```python
+```text
 in_channels (int): Number of channels in the input image  
 out_channels (int): Number of channels produced by the convolution  
 kernel_size (int or tuple): Size of the convolving kernel  
@@ -117,6 +117,11 @@ o &= i + 2p - k + 1 \\
 \end{align*}
 $$
 
+**总结**：
+
+1. output 尺寸实际上就是指 Kernel 能走几步
+2. padding 就是给输入矩阵上下左右各加上一圈$0$
+
 ![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s1_p1_num.png)
 
 ```python
@@ -130,7 +135,7 @@ print('--------1.2.1 Zero Padding, Unit Strides: padding = 1, stride = 1--------
 
 #### 1.2.2. Same Padding
 
-Normal Convolution 在什么情况下 $i=o$ ?
+Normal Convolution 在什么情况下输入尺寸和输出尺寸相同，即 $i=o$ ?
 
 - $i=o, \ k, \ p, \ s=1$
 
@@ -146,7 +151,8 @@ $$
 **总结**：
 
 1. output 尺寸实际上就是指 Kernel 能走几步
-2. 若要使 Normal Convolution 实现 output 和 input 尺寸相同 则 $k$ 必须是**奇数**，否则无法实现
+2. padding 就是给输入矩阵上下左右各加上一圈$0$
+3. 若要使 Normal Convolution 实现 output 和 input 尺寸相同，则 $p = \frac{k - 1}{2}$ 且$k$必须是**奇数**，否则无法实现
 
 ##### 1.2.2.1. E.g. 1
 
@@ -198,8 +204,9 @@ $$
 **总结**：
 
 1. output 尺寸实际上就是指 Kernel 能走几步
-2. 若要使 Normal Convolution 实现 output 和 input 尺寸相同 则 $k$ 必须是**奇数**，否则无法实现
-3. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\frac { i + 2p - k }{s}$）从而判断 output 的尺寸
+2. padding 就是给输入矩阵上下左右各加上一圈$0$
+3. 若要使 Normal Convolution 实现 output 和 input 尺寸相同，则 $p = \frac{k - 1}{2}$ 且$k$必须是**奇数**，否则无法实现
+4. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\frac { i + 2p - k }{s}$）从而判断 output 的尺寸
 
 ![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq2.png)
 
@@ -240,8 +247,9 @@ $$
 **总结**：
 
 1. output 尺寸实际上就是指 Kernel 能走几步
-2. 若要使 Normal Convolution 实现 output 和 input 尺寸相同 则 $k$ 必须是奇数，否则无法实现
-3. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\lfloor \frac {i + 2p - k }{s}\rfloor$）从而判断 output 的尺寸，考虑到 $i + 2p - k$ 不一定可以整除 $s$，这种情况下需要对步数向下取整，因为走不动就不走了
+2. padding 就是给输入矩阵上下左右各加上一圈$0$
+3. 若要使 Normal Convolution 实现 output 和 input 尺寸相同，则 $p = \frac{k - 1}{2}$ 且$k$必须是**奇数**，否则无法实现
+4. 如果 Normal Convolution 时有 Stride，我们可以通过计算 kernel 能走几步（$\lfloor \frac {i + 2p - k }{s}\rfloor$）从而判断 output 的尺寸，考虑到 $i + 2p - k$ 不一定可以整除 $s$，这种情况下需要对步数向下取整，因为走不动就不走了
 
 ![](imgs/2021_11_22-GuanyuHu-Convolution_Arithmetic/normal_convolution_s2_p0_num_eq1.png)
 
