@@ -1,8 +1,8 @@
 ---
 date created: 2021-10-15, Friday, 13:58:57
 date modified: 2021-11-23, Tuesday, 21:03:19
-latest modified author: Guanyu Hu
-date latest modified: 2022-01-13,23:00:45
+latest modified author: Yixin Song
+date latest modified: 2022-11-04,11:23:45
 ---
 
 # YLab-CV-Workshop
@@ -52,6 +52,7 @@ date latest modified: 2022-01-13,23:00:45
 | 2022-03-03 | Week02 |                                            | 胡冠宇         |  | | -                                                                              |   |
 | 2022-03-10 | Week03 |                                            | 侯玉亮         |  | | -                                                                              |   |
 | 2022-03-17 | Week04 |                                            | 张硕           |  | | -                                                                              |   |
-| 2022-03-24 | Week05 |                                            | 魏洁           |  | | -                                                                              |   |
+| 2022-03-24 | Week05 |                                            | 魏洁           |-  |[Note](Assets/Notes/2022_03_24-JieWei-Conference.md) / [PDF](Assets/Notes/Notes_PDF/2022_03_24-JieWei-Conference.pdf) | -                                                                              |   |
 | 2022-03-31 | Week06 |                                            | 曹至欣          |  | | -                                                                              |   |
 | 2022-04-07 | Week07 |                                            | 宋怡馨          |  | | -                                                                              |   |
+| 2022-11-03 | Week09 | Diffusion Model                            | 宋怡馨    |- |[Note](Assets/Notes/2022_11_03-YixinSong-Diffusion_Model.md) / [PDF](Assets/Notes/Notes_PDF/2022_11_03-YixinSong-Diffusion_Model.pdf) | [Code](Assets/Files/Codes/2022_11_03-YixinSong-Diffusion_Model_demo.ipynb)| |
