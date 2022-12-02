@@ -90,7 +90,7 @@
     2. 模型的不确定性：模型本身对输入数据的估计不准确，与某一单独的数据无关。可能导致的原因是训练不佳、训练数据不够等
        - 解决方案：具体问题具体分析，例如增加训练数据等
 
-  ![image-20221130104944158](Assets/Notes/imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221130104944158.png)
+  ![image-20221130104944158](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221130104944158.png)
   
   
 
