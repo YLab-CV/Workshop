@@ -102,11 +102,11 @@
 
 > 实验验证不确定性对识别效果的影响：下图(a)表示同一ID，但是相似程度较低的图片，(b)是不同ID，但相似程度较高的图片
 
-![image-20221201110448330](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20221201110448330.png)
+![image-20221201110448330](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221201110448330.png)
 
 **核心思想**：用概率分布来替代传统方法学习到的确定性的人脸特征
 
-![image-20221130112903230](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20221130112903230.png)
+![image-20221130112903230](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221130112903230.png)
 
 > 传统方法：将输入人脸图像在潜在特征空间中映射成一个确定的点
 >
@@ -141,13 +141,13 @@ $$
 
 **核心思想**：在PFE思路的引导下，既学习方差也学习均值，学习与身份相关的特征，且可使用传统的相似性度量方法不需要依赖MLS
 
-![image-20221201092551632](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20221201092551632.png)
+![image-20221201092551632](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221201092551632.png)
 
 > 能够预测概率分布，使得同一ID之间的样本均值距离拉进，而不同ID之间的样本均值距离拉开
 
 **1. 基于分类的方法（从头学习一个分类模型）**：
 
-![image-20221201092609486](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20221201092609486.png)
+![image-20221201092609486](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221201092609486.png)
 
 > **为什么要引入$\epsilon$？
 >
@@ -185,7 +185,7 @@ $$
 
 **2. 基于回归的方法（从现有模型出发学习回归模型）**：
 
-![image-20221201095237808](C:\Users\czx\AppData\Roaming\Typora\typora-user-images\image-20221201095237808.png)
+![image-20221201095237808](imgs/2022_12_01-ZhixinCao-Face_Recognition_and_Uncertainty_Learning/image-20221201095237808.png)
 
 > **为什么需要用分类层的权重矩阵$W$？
 >
